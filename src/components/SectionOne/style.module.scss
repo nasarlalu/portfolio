@@ -1,0 +1,79 @@
+.section_one {
+  background-color: #e0e0e0;
+  border-radius: 1rem;
+  padding: 2.5rem 0;
+  margin-bottom: 5rem;
+  //   height: 90vh;
+
+  .image_cntr {
+    position: relative;
+    img {
+      width: 100%;
+      height: auto;
+      visibility: visible;
+      animation-name: border-transform;
+      -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      -webkit-animation: border-transform 10s linear infinite alternate forwards;
+      animation: border-transform 10s linear infinite alternate forwards;
+      border-radius: 100%;
+      transition-delay: 0.3s;
+    }
+  }
+
+  .text_cntr {
+    margin-left: -6rem;
+    z-index: 0;
+    position: relative;
+    margin-right: 3rem;
+
+    h1 {
+      font-size: 4.5rem;
+      line-height: 80%;
+      margin-bottom: 0;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #18191d;
+    }
+    h6 {
+      margin-top: 1rem;
+      font-size: 1.5rem;
+      color: #18191d;
+    }
+    p{
+      color: #868a9b;
+      margin-top: 1rem;
+    }
+  }
+}
+
+@keyframes border-transform {
+  0%,
+  100% {
+    border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+  }
+
+  14% {
+    border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+  }
+
+  28% {
+    border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+  }
+
+  42% {
+    border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+  }
+
+  56% {
+    border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+  }
+
+  70% {
+    border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+  }
+
+  84% {
+    border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+}

@@ -1,7 +1,10 @@
-import { Inter } from "next/font/google";
+import { Inter, Syne } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import Header from "@/src/components/Header/Header"
+import SmoothScrolling from "@/src/components/SmoothScrolling/SmoothScrolling"
+import CustomCursor from "@/src/hooks/CustomCursor"
+// const inter = Inter({ subsets: ["latin"] });
+const syne = Syne({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -11,7 +14,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={syne.className}>
+        {/* <CustomCursor /> */}
+        <main className="main">
+          <SmoothScrolling>
+            <Header />
+            {children}
+          </SmoothScrolling>
+        </main>
+      </body>
     </html>
   );
 }

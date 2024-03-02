@@ -1,0 +1,199 @@
+.header {
+  .navbar {
+    z-index: 2;
+    width: fit-content;
+    height: 2.75rem;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: #d3d3d357;
+    border: 1px solid #7d7d7d2b;
+    border-radius: 999px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+    position: fixed;
+    top: 3rem;
+    right: 3em;
+
+    .logo_cntr {
+      img {
+        width: 2.5rem;
+        height: auto;
+      }
+    }
+
+    .link_cntr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-right: 0.5rem;
+      a {
+        color: #222;
+        text-decoration: none;
+        transition: all .2s ease-in-out;
+      }
+      a:hover {
+        color: #fff;
+        cursor: url("/assets/icons/cursor_touch_white.svg"), auto;
+      }
+    }
+  }
+}
+
+// /* button settings 
+.ui_btn {
+  --btn-default-bg: rgb(41, 41, 41);
+  --btn-padding: 15px 20px;
+  --btn-hover-bg: rgb(51, 51, 51);
+  --btn-transition: 0.3s;
+  --btn-letter-spacing: 0.1rem;
+  --btn-animation-duration: .7s;
+  --btn-shadow-color: #24252b;
+  --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
+  --hover-btn-color: #fff;
+  --default-btn-color: #fff;
+}
+.ui_btn {
+  cursor: pointer;
+  transition: var(--btn-transition);
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ui_btn .navlinktext {
+  transition: var(--btn-transition);
+  box-sizing: border-box;
+  position: relative;
+  background: inherit;
+  border: 1px solid #24252b;
+  border-radius: 2rem;
+  padding: 0.25rem 1rem;
+  margin-left: 0.5rem;
+  overflow-x: hidden;
+  z-index: 2;
+  font-weight: 700;
+  font-size: .8rem;
+}
+
+.ui_btn .navlinktext::before {
+  box-sizing: border-box;
+  position: absolute;
+  content: "";
+  background: inherit;
+  overflow-x: hidden;
+  z-index: 1;
+}
+
+.ui_btn:hover .navlinktext,
+.ui_btn:focus .navlinktext {
+  background: var(--btn-hover-bg);
+}
+
+.ui_btn:hover .navlinktext,
+.ui_btn:focus .navlinktext {
+  color: var(--hover-btn-color);
+}
+
+.ui_btn:hover .navlinktext::before,
+.ui_btn:focus .navlinktext::before {
+  animation: chitchat linear both var(--btn-animation-duration);
+}
+
+@keyframes chitchat {
+  0% {
+    content: "ac";
+  }
+
+  5% {
+    content: "zx";
+  }
+
+  10% {
+    content: "hfj";
+  }
+
+  15% {
+    content: "gtr";
+  }
+
+  20% {
+    content: "mez";
+  }
+
+  25% {
+    content: "tow";
+  }
+
+  30% {
+    content: "fu";
+  }
+  35% {
+    content: "bjk";
+  }
+
+  40% {
+    content: "ml";
+  }
+
+  45% {
+    content: "dsw";
+  }
+
+  50% {
+    content: "lkb";
+  }
+
+  55% {
+    content: "mrf";
+  }
+
+  60% {
+    content: "kfc";
+    right: 0;
+  }
+
+  65% {
+    content: "bk";
+    right: 0;
+  }
+
+  70% {
+    content: "zy";
+    right: 0;
+  }
+
+  75% {
+    content: "'wy";
+    right: 0;
+  }
+
+  80% {
+    content: "ki";
+    right: 0;
+  }
+
+  85% {
+    content: "y";
+    right: 0;
+  }
+
+  90% {
+    content: "x";
+    right: 0;
+  }
+
+  95% {
+    content: "z";
+    right: 0;
+  }
+
+  100% {
+    content: "";
+    right: 0;
+  }
+}
+
