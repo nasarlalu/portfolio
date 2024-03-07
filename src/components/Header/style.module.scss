@@ -31,7 +31,7 @@
       a {
         color: #222;
         text-decoration: none;
-        transition: all .2s ease-in-out;
+        transition: all 0.2s ease-in-out;
       }
       a:hover {
         color: #fff;
@@ -41,14 +41,14 @@
   }
 }
 
-// /* button settings 
+// /* button settings
 .ui_btn {
   --btn-default-bg: rgb(41, 41, 41);
   --btn-padding: 15px 20px;
   --btn-hover-bg: rgb(51, 51, 51);
   --btn-transition: 0.3s;
   --btn-letter-spacing: 0.1rem;
-  --btn-animation-duration: .7s;
+  --btn-animation-duration: 0.7s;
   --btn-shadow-color: #24252b;
   --btn-shadow: 0 2px 10px 0 var(--btn-shadow-color);
   --hover-btn-color: #fff;
@@ -76,7 +76,7 @@
   overflow-x: hidden;
   z-index: 2;
   font-weight: 700;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .ui_btn .navlinktext::before {
@@ -197,3 +197,10 @@
   }
 }
 
+@media only screen and (max-width: 660px) {
+  .header {
+    .navbar {
+      right: 5em;
+    }
+  }
+}

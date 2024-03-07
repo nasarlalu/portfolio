@@ -6,13 +6,13 @@ export default function SectionOne() {
         <section className={styles.section_one}>
             <div className="container">
                 <div className="row align-items-center">
-                    <div className='col-md-7'>
+                    <div className='col-md-7 col-12'>
                         <div className={styles.image_cntr}>
                             <Image src={banner} alt='banner' quality={100} />
                         </div>
                     </div>
 
-                    <div className='col-md-5'>
+                    <div className='col-md-5 col-12'>
                         <div className={styles.text_cntr}>
                             <h1>Syed</h1>
                             <h1>Nasar</h1>

@@ -40,7 +40,7 @@
       font-size: 1.5rem;
       color: #18191d;
     }
-    p{
+    p {
       color: #868a9b;
       margin-top: 1rem;
     }
@@ -75,5 +75,24 @@
 
   84% {
     border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+  }
+}
+
+@media only screen and (max-width: 660px) {
+  .section_one {
+    margin-bottom: 0;
+    .image_cntr {
+      margin-top: 3rem;
+    }
+    .text_cntr {
+      margin: 2rem 0;
+      text-align: center;
+      h1{
+        font-size: 3.5rem;
+      }
+      p{
+        padding: 0 .25rem;
+      }
+    }
   }
 }
