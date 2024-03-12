@@ -153,6 +153,13 @@
           margin-right: auto;
           margin-left: auto;
         }
+        button:hover {
+          color: #fff;
+          background-color: #18191d;
+        }
+        button:hover::before {
+          opacity: 0;
+        }
       }
     }
   }
