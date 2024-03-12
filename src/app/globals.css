@@ -42,7 +42,7 @@ a {
 
 /* custom bootstrap */
 .container {
-  max-width: 1140px !important;
+  /* max-width: 1140px !important; */
   width: 100%;
   padding-right: .25rem;
   padding-left: .25rem;
@@ -203,6 +203,11 @@ a {
   .col-12 {
     flex: 0 0 auto;
     width: 100%
+  }
+
+  .main {
+    padding: 0;
+    background-color: #f4f5f7;
   }
 
 }

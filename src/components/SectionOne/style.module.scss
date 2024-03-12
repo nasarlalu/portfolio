@@ -133,6 +133,7 @@
 @media only screen and (max-width: 660px) {
   .section_one {
     margin-bottom: 0;
+    border-radius: 0;
     .image_cntr {
       margin-top: 3rem;
     }
@@ -140,10 +141,16 @@
       margin: 2rem 0;
       text-align: center;
       h1 {
-        font-size: 3.5rem;
+        font-size: 15vw;
       }
       p {
-        padding: 0 0.25rem;
+        padding: 0 5vw;
+      }
+      .download_btn {
+        button {
+          margin-right: auto;
+          margin-left: auto;
+        }
       }
     }
   }
