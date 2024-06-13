@@ -5,10 +5,10 @@ export default function Services() {
         <section className={styles.services_section}>
             <div className='container'>
                 <div className='row justify-content-between align-items-start'>
-                    <div className='col-md-5'>
+                    <div className='col-md-5 col-12'>
                         <h1>Services</h1>
                     </div>
-                    <div className='col-md-6'>
+                    <div className='col-md-6 col-12'>
                         <p>I offer a suite of services designed to bring your ideas to life.
                             Let’s transform your vision into a digital masterpiece together.
                             Explore my services and let’s start building your dream website today!
@@ -17,7 +17,7 @@ export default function Services() {
                 </div>
 
                 <div className='row'>
-                    <div className='col-md-4'>
+                    <div className='col-md-4 col-12'>
                         <div className={styles.service_cntr}>
                             <PiMonitorThin />
                             <h2>UI Design with Figma</h2>
@@ -25,7 +25,7 @@ export default function Services() {
                         </div>
                     </div>
 
-                    <div className='col-md-4'>
+                    <div className='col-md-4 col-12'>
                         <div className={styles.service_cntr}>
                             <PiMonitorThin />
                             <h2>Web Devlopment</h2>
@@ -33,7 +33,7 @@ export default function Services() {
                         </div>
                     </div>
 
-                    <div className='col-md-4'>
+                    <div className='col-md-4 col-12'>
                         <div className={styles.service_cntr}>
                             <PiMonitorThin />
                             <h2>Ecommerce</h2>

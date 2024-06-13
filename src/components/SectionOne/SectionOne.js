@@ -1,7 +1,7 @@
 import styles from './style.module.scss'
 import Image from 'next/image'
 import Link from 'next/link'
-import banner from '@/public/assets/images/home_banner.jpg'
+import banner from '@/public/assets/images/me_transparent.png'
 import { AiOutlineDownload } from "react-icons/ai";
 export default function SectionOne() {
     return (
