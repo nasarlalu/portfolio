@@ -11,7 +11,7 @@ export default function Header() {
                     <a className={styles.ui_btn} href="#project_section">
                         <span className={styles.navlinktext}>Projects</span>
                     </a>
-                    <a className={styles.ui_btn} href="contact_section">
+                    <a className={styles.ui_btn} href="#contact_section">
                         <span className={styles.navlinktext}>Contact</span>
                     </a>
                 </div>

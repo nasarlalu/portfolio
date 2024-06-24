@@ -27,14 +27,14 @@
       min-height: 10rem;
       text-wrap: pretty;
     }
-  }
 
-  .service_cntr:hover {
-    background-color: #24252b;
-    svg,
-    p,
-    h2 {
-      color: #fff;
+    &:hover {
+      background-color: #24252b;
+      svg,
+      p,
+      h2 {
+        color: #fff;
+      }
     }
   }
 }

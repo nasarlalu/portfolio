@@ -1,0 +1,48 @@
+.footer_section {
+  padding: 6rem 0;
+  background-color: #fff;
+
+  .contact_row {
+    display: flex;
+    justify-content: space-between;
+    .contact_col {
+      h6 {
+        font-weight: 700;
+        font-size: 1.5rem;
+        line-height: normal;
+        margin-bottom: 0.5rem;
+        color: #222;
+      }
+      a {
+        color: #868a9b;
+        font-size: 1rem;
+        line-height: normal;
+      }
+
+      .icon_row {
+        display: flex;
+        justify-content: space-between;
+        a {
+        //   margin-right: 1rem;
+          svg {
+            width: 2rem;
+            height: 2rem;
+            border: 0.5px solid #222;
+            border-radius: 2rem;
+            padding: 0.5rem;
+            transition: all 0.3s ease-in-out;
+          }
+
+          &:hover {
+            svg {
+              background-color: #222;
+              path {
+                fill: #fff;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
