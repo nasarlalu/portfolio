@@ -1,0 +1,310 @@
+.heroSection {
+    // background-color: #f4f5f7;
+    padding: 2.5rem 0;
+
+    .heroGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+
+    .heroGridItem {
+        position: relative;
+    }
+
+    .heroBannerWrapper {
+        position: relative;
+    }
+
+    .heroBanner {
+        width: 100%;
+        height: auto;
+        visibility: visible;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        animation: border-transform 10s linear infinite alternate forwards;
+        border-radius: 100%;
+        transition-delay: 0.3s;
+        transition-delay: 0.3s;
+        background-color: #c8c3c4;
+    }
+
+    .heroContent {
+        margin-left: -6rem;
+        z-index: 0;
+        position: relative;
+        margin-right: 3rem;
+    }
+
+    .heroRole {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #18191d;
+    }
+
+    .heroDesp {
+        color: #868a9b;
+        margin-top: 1rem;
+    }
+
+    .heroTite {
+        font-size: 4.5rem;
+        line-height: 80%;
+        margin-bottom: 0;
+        font-weight: 800;
+        text-transform: uppercase;
+        color: #18191d;
+    }
+
+    .heroIcon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    .heroBtn {
+        background: #fff;
+        color: #18191d;
+        padding: .75rem 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+        font-size: 1rem;
+        font-weight: 600;
+        width: fit-content;
+        text-transform: uppercase;
+        cursor: pointer;
+        transform: skew(0);
+        font-family: inherit;
+        margin-top: 2rem;
+        border-radius: 3rem;
+        box-shadow: 20px 20px 40px #a9a9a9, -20px -20px 40px #cecece;
+        position: relative;
+    }
+
+    .heroBtn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 100%;
+        opacity: 0;
+        z-index: -1;
+        transition: all 0.5s;
+        border-radius: 3rem;
+        background: rgb(20, 20, 20);
+    }
+
+    .heroBtn:hover {
+        color: #fff;
+    }
+
+    .heroBtn:hover::before {
+        left: 0;
+        right: 0;
+        opacity: 1;
+    }
+}
+
+
+.serviceSection {
+    // background-color: #f4f5f7;
+    padding: 5rem 0;
+
+    .TitleGrid {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 5rem;
+        align-items: center;
+    }
+
+    .TitleText {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #868a9b;
+        line-height: 1.5rem;
+    }
+
+    .TitleText__uppercase {
+        display: inline-block;
+        font-weight: 700;
+        font-size: .75rem;
+        color: #868a9b;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+    }
+
+    .serviceGrid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 1rem;
+        margin-top: 4rem;
+    }
+
+    .serviceGridItem {
+        padding: 2rem;
+        background-color: #fff;
+        border-radius: 2px;
+        transition: all 0.3s ease-in;
+        margin-right: 0.75rem;
+
+        .serviceGridIcon {
+            width: 5rem;
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 1.5rem;
+            fill: #18191d;
+        }
+
+        .serviceGridHeading {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: #18191d;
+        }
+
+        .serviceGridtext {
+            min-height: 10rem;
+            text-wrap: pretty;
+            font-size: 1rem;
+            font-weight: 400;
+            color: #868a9b;
+            line-height: 1.5rem;
+        }
+
+        &:hover {
+            background-color: #24252b;
+
+            .serviceGridIcon,
+            .serviceGridtext,
+            .serviceGridHeading {
+                color: #fff;
+                fill: #fff;
+            }
+        }
+    }
+}
+
+
+.skillSection {
+    padding: 8rem 0;
+
+    .skill__wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+    }
+
+    .skill__wraptextTitle {
+        font-size: 3rem;
+        line-height: normal;
+        margin-bottom: 3rem;
+    }
+
+    .skill__wraptext {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #868a9b;
+        line-height: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+
+
+    .skill__grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 2rem;
+        position: relative;
+    }
+
+
+    .skill__gridItem {
+        color: #222;
+        padding: 1rem;
+        border: 5px solid #eaeef5;
+        border-radius: 2rem;
+        background: #f1f3f6;
+        box-shadow: inset 0 0 5px rgba(55, 84, 170, 0), inset 0 0 10px rgba(255, 255, 255, 0), 5px 5px 9px rgba(55, 84, 170, 0.15), -5px -5px 11px white, inset 0px 0px 2px rgba(255, 255, 255, 0.2);
+        transition: box-shadow 0.2s ease-in-out;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+    }
+
+    .skill__gridSkill {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: normal;
+
+    }
+
+    .skill__gridIcon {
+        position: absolute;
+        opacity: 0.2;
+        font-size: 5rem;
+    }
+
+
+    .skill__gridItemCentred {
+        position: absolute;
+        top: calc(50% - 4.5rem);
+        left: calc(50% - 4.5rem);
+        background: #f1f3f6;
+        box-shadow: inset 0 0 5px rgba(55, 84, 170, 0), inset 0 0 10px rgba(255, 255, 255, 0), 5px 5px 9px rgba(55, 84, 170, 0.15), -5px -5px 11px white, inset 0px 0px 2px rgba(255, 255, 255, 0.2);
+        transition: box-shadow 0.2s ease-in-out;
+        padding: 2rem;
+        border-radius: 90%;
+        border: 4px solid #d6d8df;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+    }
+
+    .skill__gridItemCentredTitle {
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        line-height: 100%;
+    }
+}
+
+
+@media only screen and (max-width: 660px) {}
+
+
+@keyframes border-transform {
+
+    0%,
+    100% {
+        border-radius: 63% 37% 54% 46%/55% 48% 52% 45%;
+    }
+
+    14% {
+        border-radius: 40% 60% 54% 46%/49% 60% 40% 51%;
+    }
+
+    28% {
+        border-radius: 54% 46% 38% 62%/49% 70% 30% 51%;
+    }
+
+    42% {
+        border-radius: 61% 39% 55% 45%/61% 38% 62% 39%;
+    }
+
+    56% {
+        border-radius: 61% 39% 67% 33%/70% 50% 50% 30%;
+    }
+
+    70% {
+        border-radius: 50% 50% 34% 66%/56% 68% 32% 44%;
+    }
+
+    84% {
+        border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+    }
+}

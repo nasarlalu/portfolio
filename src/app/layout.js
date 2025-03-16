@@ -1,11 +1,9 @@
-import { Inter, Syne } from "next/font/google";
+import { Syne } from "next/font/google";
 import "./globals.css";
 import Header from "@/src/components/Header/Header"
 import Footer from "@/src/components/Footer/Footer"
-import SmoothScrolling from "@/src/components/SmoothScrolling/SmoothScrolling"
-import CustomCursor from "@/src/hooks/CustomCursor"
-// const inter = Inter({ subsets: ["latin"] });
-const syne = Syne({ subsets: ["latin"] });
+import LenisScrolling from "@/src/components/LenisScrolling/LenisScrolling"
+const syne = Syne({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], fallback: ["sans-serif"] });
 
 export const metadata = {
   title: "Syed Nasar | Frontend Developer",
@@ -20,14 +18,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={syne.className} suppressHydrationWarning={true}>
-        {/* <CustomCursor /> */}
-        <main className="main">
-          <SmoothScrolling>
-            <Header />
-            {children}
-            <Footer/>
-          </SmoothScrolling>
-        </main>
+        <LenisScrolling>
+          <Header />
+          {children}
+          <Footer />
+        </LenisScrolling>
       </body>
     </html>
   );
