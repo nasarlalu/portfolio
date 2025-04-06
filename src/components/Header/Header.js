@@ -2,14 +2,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./style.module.scss";
+import { useIsMobile } from "@/src/hooks/useIsMobile"
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
     const [showButton, setShowButton] = useState(true);
 
+    const isMobile = useIsMobile();
+
     const containerVariants = {
         hidden: { x: 0, opacity: 0, scale: 0.8 },
-        visible: { x: -100, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 200 } },
+        visible: { x: isMobile ? -28 : -100, opacity: 1, scale: 1, transition: { type: "spring", stiffness: 200 } },
         exit: { x: 0, opacity: 0, scale: 0.8, transition: { duration: 0.3 } },
     };
 
@@ -61,7 +64,7 @@ export default function Header() {
                                 <path d="M397.688 201.687H502.063C518.938 201.687 532.375 215.125 532.375 232C532.375 248.875 518.938 262.312 502.063 262.312H398.313C381.438 262.312 368 248.875 368 232C367.375 215.125 380.813 201.687 397.688 201.687ZM502.063 91.6875H428.625V30.4375H502.063C518.938 30.4375 532.375 43.875 532.375 60.75C532.375 77.625 518.938 91.6875 502.063 91.6875ZM397.688 287H471.125C488 287 501.438 300.437 501.438 317.312C501.438 334.187 488 347.625 471.125 347.625H397.688C380.813 347.625 367.375 334.187 367.375 317.312C367.375 300.437 380.813 287 397.688 287ZM172.063 104.188L266.438 9.18749C272.063 3.56249 279.875 0.125 287.688 0.125H373.625C390.5 0.125 403.938 13.5625 403.938 30.4375V146.687C403.938 163.562 390.5 177 373.625 177C356.75 177 343.313 163.562 343.313 146.687V79.5C343.313 72.625 337.688 67 330.813 67C323.938 67 318.313 72.625 318.313 79.5C318.313 153.562 257.688 213.562 184.25 213.562C177.375 213.562 171.75 219.188 171.75 226.062C171.75 232.938 177.375 238.562 184.25 238.562C242.063 238.562 292.688 207.625 320.188 161.062C324.25 173.875 332.063 184.5 342.688 192.625C342.688 192.625 342.688 301.062 342.688 317.937C342.688 329.187 346.75 339.812 351.75 348.25H263C225.5 348.25 191.75 328.562 171.438 299.5H0.812622V104.188H172.063ZM502.063 177H419.563C425.813 168.562 428.625 157.312 428.625 146.687V116.375H502.063C518.938 116.375 532.375 129.812 532.375 146.687C532.688 163.562 518.938 177 502.063 177Z" fill="#18191D" />
                             </svg>
 
-                            <a className={styles.ui_btn} href="#project_section">
+                            <a className={styles.ui_btn} href="/projects">
                                 <span className={styles.navlinktext}>Projects</span>
                             </a>
                             <a className={styles.ui_btn} href="#contact_section">
@@ -71,6 +74,15 @@ export default function Header() {
                     )}
                 </AnimatePresence>
             </div>
+
+            {/* <div className={styles.navbar__mob}>
+                <a className={styles.navbar__link} href="/projects">
+                    <span className={styles.navbar__text}>Projects</span>
+                </a>
+                <a className={styles.navbar__link} href="#contact_section">
+                    <span className={styles.navbar__text}>Contact</span>
+                </a>
+            </div> */}
         </header>
     );
 }

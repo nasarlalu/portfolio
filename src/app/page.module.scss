@@ -4,7 +4,7 @@
 
     .heroGrid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 3fr 2fr;
         align-items: center;
     }
 
@@ -16,7 +16,12 @@
         position: relative;
     }
 
+    .heroGridItem__mob {
+        display: none;
+    }
+
     .heroBanner {
+        max-width: 100%;
         width: 100%;
         height: auto;
         visibility: visible;
@@ -90,7 +95,7 @@
         right: 100%;
         opacity: 0;
         z-index: -1;
-        transition: all 0.5s;
+        transition: all 0.5s ease-in-out;
         border-radius: 3rem;
         background: rgb(20, 20, 20);
     }
@@ -200,6 +205,7 @@
         font-size: 3rem;
         line-height: normal;
         margin-bottom: 3rem;
+        color: #18191d;
     }
 
     .skill__wraptext {
@@ -274,9 +280,6 @@
 }
 
 
-@media only screen and (max-width: 660px) {}
-
-
 @keyframes border-transform {
 
     0%,
@@ -306,5 +309,110 @@
 
     84% {
         border-radius: 46% 54% 50% 50%/35% 61% 39% 65%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .heroSection {
+        .heroGrid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .heroGridItem {
+            overflow: hidden;
+        }
+
+        .heroGridItem__mob {
+            position: relative;
+            overflow: hidden;
+            display: block;
+            z-index: 0;
+
+            .heroTite {
+                font-size: 2.5rem;
+                line-height: 100%;
+            }
+
+            .heroRole {
+                font-size: 1.25rem;
+            }
+        }
+
+        .heroContent {
+            margin-left: unset;
+            margin-right: 0;
+
+            .heroTite,
+            .heroRole {
+                display: none;
+            }
+        }
+
+        .heroBtn {
+            box-shadow: inset 0px 20px 100px #000000;
+            color: #fff;
+        }
+    }
+
+    .serviceSection {
+        padding: 2rem 0;
+
+        .TitleGrid {
+            grid-template-columns: 1fr;
+            gap: 0rem;
+        }
+
+        .serviceGrid {
+            grid-template-columns: 1fr;
+            margin-top: 2rem;
+        }
+
+        .serviceGridItem {
+            padding: 1rem;
+            margin-right: 0;
+        }
+    }
+
+    .skillSection {
+        padding: 2rem 0;
+
+        .skill__wrapper {
+            grid-template-columns: 1fr;
+            gap: 0rem;
+        }
+
+        .skill__grid {
+            margin-bottom: 2rem;
+        }
+
+        .skill__wrapItem {
+            overflow: hidden;
+        }
+
+        .skill__wraptextTitle {
+            font-size: 2rem;
+            line-height: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .skill__gridSkill {
+            font-size: 1rem;
+        }
+
+        .skill__gridItem {
+            overflow: hidden;
+        }
+
+        .skill__gridItemCentred {
+            top: calc(50% - 3rem);
+            left: calc(50% - 3rem);
+            padding: 1rem;
+        }
+
+        .skill__gridItemCentredTitle {
+            font-size: 1rem;
+        }
     }
 }

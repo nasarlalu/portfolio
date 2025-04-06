@@ -8,25 +8,10 @@ import banner from '@/public/assets/images/me_transparent.png'
 import { AiOutlineDownload } from "react-icons/ai";
 import { PiMonitorThin } from "react-icons/pi";
 import AnimatedText from "@/src/components/Animations/AnimatedText";
+import { skillContainerVariants, skillItemVariants, skillCenteredGridAnime, serviceContainerVariants, serviceItemVariants, downloadBtnVariant } from '@/src/components/FramerSettings/framerSettings'
+import { useAnimateOnView } from '@/src/hooks/useAnimateOnView'
+import { ShopifyIcon, FigmaIcon } from "@/public/icon-pack"
 export default function Home() {
-
-  const containerVariants = {
-    hidden: { opacity: 1 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.4 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { type: "spring", stiffness: 120, damping: 10 },
-    },
-  };
-
 
   const skillArray = [
     {
@@ -47,15 +32,23 @@ export default function Home() {
     },
   ]
 
-  const centredGridAnime = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { type: "spring", stiffness: 120, damping: 10 },
+  const serviceItems = [
+    {
+      title: "Shopify Store",
+      description: "Want to sell online without the hassle? I build Shopify stores that are easy to manage, look great, and help you start selling fast—no tech headaches, just a smooth shopping experience for your customers.",
     },
-  }
+    {
+      title: "Custom Web Apps",
+      description: "Need a web app tailored to your unique needs? I design and develop custom web applications that are fast, scalable, and built to solve real problems—whether it’s a dashboard, booking system, or something completely unique.",
+    },
+    {
+      title: "Web Design",
+      description: "Great design isn’t just about looks—it’s about experience. I create clean, modern, and user-friendly web designs that not only look stunning but also provide a smooth and engaging experience for your visitors.",
+    },
+  ];
 
+  const serviceSection = useAnimateOnView({ margin: "-50px", once: true });
+  const skillSection = useAnimateOnView({ margin: "-50px", once: true });
 
 
   return (
@@ -64,6 +57,13 @@ export default function Home() {
       <section className={styles.heroSection}>
         <div className="container">
           <div className={styles.heroGrid}>
+
+            <div className={styles.heroGridItem__mob}>
+              <h1 className={styles.heroTite}><AnimatedText text={"Syed"} /></h1>
+              <h1 className={styles.heroTite}><AnimatedText text={"Nasar"} /></h1>
+              <h6 className={styles.heroRole}> <AnimatedText text={"Full Stack Enginner"} /></h6>
+            </div>
+
             <div className={styles.heroGridItem}>
               <div className={styles.heroBannerWrapper}>
                 <Image src={banner} alt='banner' quality={100} className={styles.heroBanner} />
@@ -72,16 +72,22 @@ export default function Home() {
 
             <div className={styles.heroGridItem}>
               <div className={styles.heroContent}>
-                <h1 className={styles.heroTite}>Syed</h1>
-                <h1 className={styles.heroTite}>Nasar</h1>
+                <h1 className={styles.heroTite}><AnimatedText text={"Syed"} /> </h1>
+                <h1 className={styles.heroTite}><AnimatedText text={"Nasar"} /></h1>
 
-                <h6 className={styles.heroRole}>Full Stack Enginner</h6>
-                <p className={styles.heroDesp}>Hi, I’m a creative Full Stack Engineer who loves building sleek and user-friendly web experiences</p>
+                <h6 className={styles.heroRole}> <AnimatedText text={"Full Stack Enginner"} /></h6>
+                <p className={styles.heroDesp}><AnimatedText gap="4px" text={"Hi, I’m a creative Full Stack Engineer who loves building sleek and user-friendly web experiences"} /></p>
 
-                <Link href='/assets/syed_nasar_resume.pdf' className={styles.heroBtn}>
-                  <span className={styles.heroText}>Download CV</span>
-                  <AiOutlineDownload className={styles.heroIcon} />
-                </Link>
+                <motion.div
+                  variants={downloadBtnVariant}
+                  initial="hidden"
+                  animate="visible"
+                >
+                  <Link href='/assets/syed_nasar_resume.pdf' className={styles.heroBtn}>
+                    <span className={styles.heroText}>Download CV</span>
+                    <AiOutlineDownload className={styles.heroIcon} />
+                  </Link>
+                </motion.div>
               </div>
             </div>
           </div>
@@ -93,37 +99,38 @@ export default function Home() {
         <div className='container'>
           <div className={styles.TitleGrid}>
             <div className={styles.TitleGridtem}>
-              <p className={styles.TitleText__uppercase}>What I’m good at</p>
-              <h1>Solutions</h1>
+              <p className={styles.TitleText__uppercase}><AnimatedText text={"What I’m good at"} /></p>
+              <h1> <AnimatedText text={"Solutions"} /> </h1>
             </div>
             <div className={styles.TitleGridtem}>
-              <p className={styles.TitleText}>I offer a suite of services designed to bring your ideas to life.
-                Let’s transform your vision into a digital masterpiece together.
-                Explore my services and let’s start building your dream digital presence today!
+              <p className={styles.TitleText}>
+                <AnimatedText gap="4px" text={"I offer a suite of services designed to bring your ideas to life. Let’s transform your vision into a digital masterpiece together. Explore my services and let’s start building your dream digital presence today!"} />
               </p>
             </div>
           </div>
 
-          <div className={styles.serviceGrid}>
+          <motion.div
+            ref={serviceSection?.ref}
+            className={styles.serviceGrid}
+            variants={serviceContainerVariants}
+            initial="hidden"
+            animate={serviceSection?.hasAnimated ? "visible" : "hidden"}
+          >
+            {serviceItems.map((item, index) => (
+              <motion.div
+                key={index}
+                className={styles.serviceGridItem}
+                variants={serviceItemVariants}
+              >
+                {item?.title == "Shopify Store" && <ShopifyIcon className={styles.serviceGridIcon} />}
+                {item?.title == "Custom Web Apps" && <PiMonitorThin className={styles.serviceGridIcon} />}
+                {item?.title == "Web Design" && <FigmaIcon className={styles.serviceGridIcon} />}
 
-            <div className={styles.serviceGridItem}>
-              <PiMonitorThin className={styles.serviceGridIcon} />
-              <h2 className={styles.serviceGridHeading}>Shopify Store</h2>
-              <p className={styles.serviceGridtext}>Want to sell online without the hassle? I build Shopify stores that are easy to manage, look great, and help you start selling fast—no tech headaches, just a smooth shopping experience for your customers.</p>
-            </div>
-
-            <div className={styles.serviceGridItem}>
-              <PiMonitorThin className={styles.serviceGridIcon} />
-              <h2 className={styles.serviceGridHeading}>Custom Web Apps</h2>
-              <p className={styles.serviceGridtext}>Need a web app tailored to your unique needs? I design and develop custom web applications that are fast, scalable, and built to solve real problems—whether it’s a dashboard, booking system, or something completely unique.</p>
-            </div>
-
-            <div className={styles.serviceGridItem}>
-              <PiMonitorThin className={styles.serviceGridIcon} />
-              <h2 className={styles.serviceGridHeading}>Web Design</h2>
-              <p className={styles.serviceGridtext}>Great design isn’t just about looks—it’s about experience. I create clean, modern, and user-friendly web designs that not only look stunning but also provide a smooth and engaging experience for your visitors.</p>
-            </div>
-          </div>
+                <h2 className={styles.serviceGridHeading}>{item.title}</h2>
+                <p className={styles.serviceGridtext}>{item.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
 
         </div>
       </section>
@@ -137,25 +144,27 @@ export default function Home() {
             <div className={styles.skill__wrapItem}>
               <h2 className={styles.skill__wraptextTitle}><AnimatedText text="Bringing Ideas to Life with Code & Creativity" /></h2>
               <p className={styles.skill__wraptext}>
-                I specialize in building dynamic, responsive, and visually engaging digital experiences with a focus on performance and usability.
+                <AnimatedText gap="4px" text={"I specialize in building dynamic, responsive, and visually engaging digital experiences with a focus on performance and usability."} />
               </p>
               <p className={styles.skill__wraptext}>
-                From frontend elegance to backend efficiency, I leverage modern technologies to develop seamless, high-quality web applications.
+                <AnimatedText gap="4px" text={"From frontend elegance to backend efficiency, I leverage modern technologies to develop seamless, high-quality web applications."} />
               </p>
             </div>
 
             <div className={styles.skill__wrapItem}>
               <motion.div
+                ref={skillSection?.ref}
                 className={styles.skill__grid}
-                variants={containerVariants}
+                variants={skillContainerVariants}
                 initial="hidden"
-                animate="visible"
+                animate={skillSection?.hasAnimated ? "visible" : "hidden"}
+
               >
                 {skillArray?.map((item, index) => (
                   <motion.div
                     key={index}
                     className={styles.skill__gridItem}
-                    variants={itemVariants}
+                    variants={skillItemVariants}
                     whileHover={{ scale: 1.1 }}
                   >
                     <span className={styles.skill__gridIcon}>{item?.skill__gridIcon}</span>
@@ -163,7 +172,7 @@ export default function Home() {
                   </motion.div>
                 ))}
 
-                <motion.div className={styles.skill__gridItemCentred} variants={centredGridAnime}>
+                <motion.div className={styles.skill__gridItemCentred} variants={skillCenteredGridAnime}>
                   <h6 className={styles.skill__gridItemCentredTitle}>SKILLS</h6>
                 </motion.div>
               </motion.div>

@@ -40,6 +40,10 @@
       }
     }
   }
+
+  .navbar__mob {
+    display: none;
+  }
 }
 
 .menuTrigger__btn {
@@ -52,6 +56,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  border: .5px solid #18191d;
 
   svg {
     width: 1.5rem;
@@ -229,10 +234,45 @@
 
 @media only screen and (max-width: 660px) {
   .header {
-    display: none;
-
     .navbar {
-      right: 5em;
+      top: 1rem;
+      right: 1rem;
+
+      .link_cntr {
+        gap: 0.75rem;
+      }
+    }
+
+    .navbar__mob {
+      display: none;
+    }
+  }
+
+  .menuTrigger__btn {
+    background-color: transparent;
+    border: unset;
+  }
+
+  .menuTrigger__btn svg {
+    animation: rotateGun 6s linear infinite;
+    transform-origin: center;
+  }
+
+  .menuClose__btn {
+    width: 1.5rem;
+  }
+
+  .ui_btn {
+    font-size: .8rem;
+  }
+
+  @keyframes rotateGun {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
     }
   }
 }

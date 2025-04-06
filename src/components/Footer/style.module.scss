@@ -3,9 +3,17 @@
   // background-color: #fff;
 
   .contact_row {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     justify-content: space-between;
+
     .contact_col {
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
       h6 {
         font-weight: 700;
         font-size: 1.5rem;
@@ -13,6 +21,7 @@
         margin-bottom: 0.5rem;
         color: #222;
       }
+
       a {
         color: #868a9b;
         font-size: 1rem;
@@ -21,9 +30,11 @@
 
       .icon_row {
         display: flex;
+        align-items: center;
+        gap: 1rem;
         justify-content: space-between;
+
         a {
-        //   margin-right: 1rem;
           svg {
             width: 2rem;
             height: 2rem;
@@ -36,11 +47,34 @@
           &:hover {
             svg {
               background-color: #222;
+
               path {
                 fill: #fff;
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  .footer_section {
+    padding: 2rem 0;
+
+    .contact_row {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+
+      .contact_col {
+        h6 {
+          font-size: 1rem;
+        }
+
+        a {
+          font-size: .8rem;
         }
       }
     }

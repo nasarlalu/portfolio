@@ -32,6 +32,7 @@ body {
 }
 
 
+
 a {
   color: inherit;
   text-decoration: none;
@@ -43,6 +44,18 @@ h1 {
   color: #282828;
   line-height: 100%;
   margin-bottom: 1rem;
+}
+
+a,
+p,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #282828;
 }
 
 
@@ -61,10 +74,65 @@ h1 {
   margin-left: auto;
 }
 
+.container-fluid {
+  width: 100%;
+  max-width: 100%;
+}
+
+
+.swiper__projects {
+  width: 100%;
+  height: 100%;
+}
+
+
+
 
 
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+
+@media only screen and (max-width: 767px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .swiper__projects {
+    margin-top: 5rem;
+    width: calc(100% - 2rem);
+    margin: 0 auto;
+
+    .swiper-pagination {
+      background-color: #222222;
+      border: 1px solid #cecece;
+      padding-top: 4px;
+      padding-bottom: 10px;
+      border-radius: 2rem;
+
+      width: fit-content !important;
+      padding-right: 1rem;
+      padding-left: 1rem;
+      left: calc(50% - 62px) !important;
+    }
+
+    .swiper-wrapper {
+      padding-bottom: 3.5rem;
+    }
+
+    .swiper-pagination-bullet {
+      width: 12px;
+      height: 4px;
+      border-radius: 0px;
+      background-color: #888888;
+      opacity: 1;
+    }
+
+    .swiper-pagination-bullet-active {
+      background-color: #fff;
+    }
   }
 }
