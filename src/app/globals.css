@@ -1,4 +1,6 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -80,19 +82,13 @@ h6 {
 }
 
 .project__section {
+  padding-bottom: 8rem;
 
   .project__desp {
     font-size: 1rem;
     font-weight: 400;
     color: #868a9b;
     line-height: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .project__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
   }
 }
 
@@ -143,5 +139,9 @@ h6 {
     .swiper-pagination-bullet-active {
       background-color: #fff;
     }
+  }
+
+  .project__section {
+    padding-bottom: 2rem;
   }
 }
