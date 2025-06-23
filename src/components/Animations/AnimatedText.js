@@ -1,7 +1,8 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 
-const AnimatedText = ({ text, stagger = 0.05, duration = 1, className, gap = "8px" }) => {
+const AnimatedText = ({ text, stagger = 0.05, duration = .5, className, gap = "8px" }) => {
+    
     const ref = useRef(null);
     const isInView = useInView(ref, { margin: "-100px" });
 

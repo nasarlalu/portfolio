@@ -1,8 +1,6 @@
 "use client"
-import { useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Image from "next/image";
-import Link from 'next/link'
 import styles from "./page.module.scss";
 import banner from '@/public/assets/images/me_transparent.png'
 import { AiOutlineDownload } from "react-icons/ai";
@@ -11,6 +9,9 @@ import AnimatedText from "@/src/components/Animations/AnimatedText";
 import { skillContainerVariants, skillItemVariants, skillCenteredGridAnime, serviceContainerVariants, serviceItemVariants, downloadBtnVariant } from '@/src/components/FramerSettings/framerSettings'
 import { useAnimateOnView } from '@/src/hooks/useAnimateOnView'
 import { ShopifyIcon, FigmaIcon } from "@/public/icon-pack"
+import RealPageWrapper from "@/src/components/Loader/PageWrapper"
+import Project from '@/src/components/Projects/Project'
+
 export default function Home() {
 
   const skillArray = [
@@ -47,11 +48,12 @@ export default function Home() {
     },
   ];
 
-  const serviceSection = useAnimateOnView({ margin: "-50px", once: true });
-  const skillSection = useAnimateOnView({ margin: "-50px", once: true });
+  const serviceSection = useAnimateOnView({ margin: "-50px" });
+  const skillSection = useAnimateOnView({ margin: "-50px" });
 
 
   return (
+    // <RealPageWrapper showMetrics={false}>
     <main className="main__homePage">
 
       <section className={styles.heroSection}>
@@ -83,10 +85,10 @@ export default function Home() {
                   initial="hidden"
                   animate="visible"
                 >
-                  <Link href='/assets/syed_nasar_resume.pdf' className={styles.heroBtn}>
+                  <a target="_blank" href='/assets/syed_nasar_resume.pdf' className={styles.heroBtn}>
                     <span className={styles.heroText}>Download CV</span>
                     <AiOutlineDownload className={styles.heroIcon} />
-                  </Link>
+                  </a>
                 </motion.div>
               </div>
             </div>
@@ -112,15 +114,17 @@ export default function Home() {
           <motion.div
             ref={serviceSection?.ref}
             className={styles.serviceGrid}
-            variants={serviceContainerVariants}
-            initial="hidden"
+            initial={"hidden"}
             animate={serviceSection?.hasAnimated ? "visible" : "hidden"}
+            variants={serviceContainerVariants}
           >
             {serviceItems.map((item, index) => (
               <motion.div
                 key={index}
                 className={styles.serviceGridItem}
                 variants={serviceItemVariants}
+                style={{ willChange: 'opacity, transform' }}
+                whileHover={{ scale: 1.03 }}
               >
                 {item?.title == "Shopify Store" && <ShopifyIcon className={styles.serviceGridIcon} />}
                 {item?.title == "Custom Web Apps" && <PiMonitorThin className={styles.serviceGridIcon} />}
@@ -185,8 +189,11 @@ export default function Home() {
         </div>
       </section>
 
+      <Project />
+
 
 
     </main>
+    // </RealPageWrapper>
   );
 }

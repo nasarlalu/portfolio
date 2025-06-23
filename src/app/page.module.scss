@@ -145,13 +145,15 @@
         grid-template-columns: 1fr 1fr 1fr;
         gap: 1rem;
         margin-top: 4rem;
+        transform: translateZ(0);
+        backface-visibility: hidden;
     }
 
     .serviceGridItem {
         padding: 2rem;
         background-color: #fff;
         border-radius: 2px;
-        transition: all 0.3s ease-in;
+        transition: background-color 0.3s ease;
         margin-right: 0.75rem;
 
         .serviceGridIcon {
@@ -160,12 +162,14 @@
             object-fit: contain;
             margin-bottom: 1.5rem;
             fill: #18191d;
+            transition: color fill 0.3s ease;
         }
 
         .serviceGridHeading {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             color: #18191d;
+            transition: color fill 0.3s ease;
         }
 
         .serviceGridtext {
@@ -175,6 +179,7 @@
             font-weight: 400;
             color: #868a9b;
             line-height: 1.5rem;
+            transition: color fill 0.3s ease;
         }
 
         &:hover {
@@ -314,6 +319,8 @@
 
 @media only screen and (max-width: 767px) {
     .heroSection {
+        padding-top: 5rem;
+
         .heroGrid {
             grid-template-columns: 1fr;
             gap: 1rem;
@@ -372,7 +379,21 @@
         .serviceGridItem {
             padding: 1rem;
             margin-right: 0;
+
+            .serviceGridIcon {
+                margin-bottom: 0;
+                width: 3rem;
+            }
+
+            .serviceGridHeading {
+                margin-bottom: 1rem;
+            }
+
+            .serviceGridtext {
+                min-height: unset;
+            }
         }
+
     }
 
     .skillSection {

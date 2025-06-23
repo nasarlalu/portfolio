@@ -1,23 +1,16 @@
 import { useRef, useState, useEffect } from "react";
 import { useInView } from "framer-motion";
 
-export const useAnimateOnView = ({
-    margin = "-100px",
-    once = true, // Controls if animation should happen only once
-} = {}) => {
+export const useAnimateOnView = ({ margin = "-100px" }) => {
     const ref = useRef(null);
     const isInView = useInView(ref, { margin });
     const [hasAnimated, setHasAnimated] = useState(false);
 
     useEffect(() => {
-        if (isInView) {
-            if (once && !hasAnimated) {
-                setHasAnimated(true);
-            } else if (!once) {
-                setHasAnimated(true);
-            }
+        if (isInView && !hasAnimated) {
+            setHasAnimated(true);
         }
-    }, [isInView, hasAnimated, once]);
+    }, [isInView, hasAnimated]);
 
     return { ref, hasAnimated };
 };

@@ -27,7 +27,7 @@ export default function Header() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.navbar}>
+            <nav className={styles.navbar}>
                 {showButton && (
                     <motion.button
                         className={styles.menuTrigger__btn}
@@ -73,7 +73,7 @@ export default function Header() {
                         </motion.div>
                     )}
                 </AnimatePresence>
-            </div>
+            </nav>
 
             {/* <div className={styles.navbar__mob}>
                 <a className={styles.navbar__link} href="/projects">

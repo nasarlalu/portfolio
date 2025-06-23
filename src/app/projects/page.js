@@ -1,97 +1,104 @@
 "use client";
+import React, { useRef, useState, useEffect } from "react";
+import { useScroll, useTransform, motion } from "framer-motion";
 import styles from './style.module.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination, Keyboard } from 'swiper/modules';
 import Image from 'next/image';
 
-
 export default function Projects() {
+    const sectionRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ["start start", "end end"]
+    });
+    const projects = [
+        { href: 'https://www.benfy.co/', src: '/assets/images/projects__benfy.png', title: 'Benfy' },
+        { href: 'https://kethini.com/', src: '/assets/images/projects__kethini.png', title: 'Kethini' },
+        { href: 'https://vbdace.com/', src: '/assets/images/projects__vbdace.png', title: 'VBdace' },
+        { href: 'https://fyva.in/', src: '/assets/images/projects__fyva.png', title: 'Fyva' },
+        { href: 'https://icse.kingston.ac.in/', src: '/assets/images/projects__kingston.png', title: 'Kingston' },
+    ];
+
+    // Corrected ticker transformations
+    const tickerTopX = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
+    const tickerBottomX = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
+    // Fixed image transformation
+    const imageY = useTransform(
+        scrollYProgress,
+        [0, 1],
+        ["0%", `-${(projects.length - 1) * 100}%`]
+    );
+
+
+    const [activeProject, setActiveProject] = useState(projects[0].title);
+
+    const imageRefs = useRef([]);
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const idx = Number(entry.target.getAttribute('data-index'));
+                        setActiveProject(projects[idx]?.title);
+                    }
+                });
+            },
+            { threshold: 0.5 }
+        );
+
+        imageRefs.current.forEach((ref) => {
+            if (ref) observer.observe(ref);
+        });
+
+        return () => {
+            imageRefs.current.forEach((ref) => {
+                if (ref) observer.unobserve(ref);
+            });
+        };
+    }, []);
+
     return (
-        <section className={styles.projects__section}>
-            <div className='container-fluid'>
-                <h1 className={styles.projects__title}>Projects</h1>
-                <p className={styles.projects__desp}>A showcase of my best work—crafted with clean code, sleek design, and seamless user experience. swipe through and explore!  </p>
-                <Swiper
-                    modules={[EffectCoverflow, Pagination, Keyboard]}
-                    effect={'coverflow'}
-                    speed={800}
-                    loop={true}
-                    grabCursor={true}
-                    centeredSlides={true}
-                    slidesPerView={2}
-                    initialSlide={2}
-                    pagination={{ clickable: true }}
-                    coverflowEffect={{
-                        rotate: 50,
-                        stretch: 0,
-                        depth: 100,
-                        modifier: 1,
-                        slideShadows: true,
-                    }}
-                    breakpoints={{
-                        0: {
-                            slidesPerView: 1,
-                        },
-                        660: {
-                            slidesPerView: 1,
-                        },
-                        768: {
-                            slidesPerView: 2,
-                        },
-                    }}
-                    keyboard={{ enabled: true }}
-                    className="swiper__projects"
-                >
-                    <SwiperSlide>
-                        <div className={styles.projects__swiperItem}>
-                            <a href='https://www.benfy.co/' target='_blank' className={styles.projects__swiperLink}>
-                                <Image src={'/assets/images/projects__benfy.png'} width={1920} height={1080} alt='Benfy' className={styles.projects__swiperImg} />
-                            </a>
-                            <h6 className={styles.projects__swiperTitle}>Benfy</h6>
-                        </div>
-                    </SwiperSlide>
+        <main className={styles.project__section} ref={sectionRef}>
+            <section
+                className={styles.project__tickerTop}
+            >
+                <motion.ul className={styles.project__tickerList} style={{ x: tickerTopX }}>
+                    {Array(50).fill(activeProject).map((text, idx) => (
+                        <li key={`top-${idx}`} className={styles.project__tickerListItem}>{text}</li>
+                    ))}
+                </motion.ul>
+            </section>
 
+            <motion.div className={styles.project__imageWrapper} style={{ y: imageY }}>
+                {projects.map((item, i) => (
+                    <div
+                        key={i}
+                        className={styles.project__imageBox}
+                        ref={(el) => (imageRefs.current[i] = el)}
+                        data-index={i}
+                    >
+                        <a href={item.href} target='_blank' rel="noopener noreferrer" className={styles.projects__link}>
+                            <Image
+                                src={item.src}
+                                width={1920}
+                                height={1080}
+                                alt={item.title}
+                                className={styles.projects__img}
+                            />
+                        </a>
+                    </div>
+                ))}
+            </motion.div>
 
-                    <SwiperSlide>
-                        <div className={styles.projects__swiperItem}>
-                            <a href='https://kethini.com/' target='_blank' className={styles.projects__swiperLink}>
-                                <Image src={'/assets/images/projects__kethini.png'} width={1920} height={1080} alt='Benfy' className={styles.projects__swiperImg} />
-                            </a>
-                            <h6 className={styles.projects__swiperTitle}>Kethini</h6>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className={styles.projects__swiperItem}>
-                            <a href='https://vbdace.com/' target='_blank' className={styles.projects__swiperLink}>
-                                <Image src={'/assets/images/projects__vbdace.png'} width={1920} height={1080} alt='Benfy' className={styles.projects__swiperImg} />
-                            </a>
-                            <h6 className={styles.projects__swiperTitle}>VBdace</h6>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className={styles.projects__swiperItem}>
-                            <a href='https://fyva.in/' target='_blank' className={styles.projects__swiperLink}>
-                                <Image src={'/assets/images/projects__fyva.png'} width={1920} height={1080} alt='Benfy' className={styles.projects__swiperImg} />
-                            </a>
-                            <h6 className={styles.projects__swiperTitle}>Fyva</h6>
-                        </div>
-                    </SwiperSlide>
-
-                    <SwiperSlide>
-                        <div className={styles.projects__swiperItem}>
-                            <a href='https://icse.kingston.ac.in/' target='_blank' className={styles.projects__swiperLink}>
-                                <Image src={'/assets/images/projects__kingston.png'} width={1920} height={1080} alt='Benfy' className={styles.projects__swiperImg} />
-                            </a>
-                            <h6 className={styles.projects__swiperTitle}>Kingston</h6>
-                        </div>
-                    </SwiperSlide>
-
-                    <div className="swiper-pagination"></div>
-
-                </Swiper>
-            </div>
-        </section>
+            <section
+                className={styles.project__tickerBottom}
+            >
+                <motion.ul className={styles.project__tickerList} style={{ x: tickerBottomX }}>
+                    {Array(50).fill(activeProject).map((text, idx) => (
+                        <li key={`bottom-${idx}`} className={styles.project__tickerListItem}>{text}</li>
+                    ))}
+                </motion.ul>
+            </section>
+        </main>
     );
 }
