@@ -9,12 +9,12 @@
 }
 
 :root {
-  scroll-behavior: auto !important;
+  /* scroll-behavior: auto !important; */
   --color: #e8e8e8;
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  /* display: none; */
 }
 
 html,
@@ -24,8 +24,8 @@ body {
 
 body {
   cursor: url("/assets/icons/cursor_dot.svg"), auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  /* -ms-overflow-style: none; */
+  /* scrollbar-width: none; */
   background-color: #F3F3F3;
   background-image: linear-gradient(0deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent),
     linear-gradient(90deg, transparent 24%, var(--color) 25%, var(--color) 26%, transparent 27%, transparent 74%, var(--color) 75%, var(--color) 76%, transparent 77%, transparent);

@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
-
+import LayoutWrapper from "./layoutWrapper";
 const syne = Syne({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], fallback: ["sans-serif"] });
 
 export const metadata = {
@@ -22,11 +22,13 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <link rel="icon" href="/favicon.png" sizes="any" />
       <body className={syne.className} suppressHydrationWarning={true}>
-        <LenisScrolling>
+        {/* <LenisScrolling> */}
+        <LayoutWrapper>
           <Header />
           {children}
           <Footer />
-        </LenisScrolling>
+        </LayoutWrapper>
+        {/* </LenisScrolling> */}
       </body>
     </html>
   );
