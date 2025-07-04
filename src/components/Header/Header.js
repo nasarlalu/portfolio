@@ -3,8 +3,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./style.module.scss";
 import { useIsMobile } from "@/src/hooks/useIsMobile"
+import { useSession, signIn, signOut } from "next-auth/react"
 
-export default function Header() {
+const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [showButton, setShowButton] = useState(true);
 
@@ -24,6 +25,10 @@ export default function Header() {
     const handleClose = () => {
         setIsOpen(false);
     };
+
+    const { data: session } = useSession()
+
+    console.log(session, "session")
 
     return (
         <header className={styles.header}>
@@ -47,7 +52,7 @@ export default function Header() {
                 )}
 
                 <AnimatePresence
-                    onExitComplete={() => setShowButton(true)} // Show button **only after** exit animation is done
+                    onExitComplete={() => setShowButton(true)}
                 >
                     {isOpen && (
                         <motion.div
@@ -70,19 +75,24 @@ export default function Header() {
                             <a className={styles.ui_btn} href="mailto:syednasar.sb@gmail.com">
                                 <span className={styles.navlinktext}>Contact</span>
                             </a>
+                            {session ?
+                                <div className={styles.ui_btn}>
+                                    <span className={styles.navlinktext} onClick={() => signOut()}>Sign out</span>
+                                </div> :
+                                <div className={styles.ui_btn}>
+                                    <span className={styles.navlinktext} onClick={() =>
+                                        signIn("google", { callbackUrl: window.location.origin })
+                                        // signOut()
+
+                                    }>Sign In</span>
+                                </div>
+                            }
                         </motion.div>
                     )}
                 </AnimatePresence>
             </nav>
-
-            {/* <div className={styles.navbar__mob}>
-                <a className={styles.navbar__link} href="/projects">
-                    <span className={styles.navbar__text}>Projects</span>
-                </a>
-                <a className={styles.navbar__link} href="#contact_section">
-                    <span className={styles.navbar__text}>Contact</span>
-                </a>
-            </div> */}
         </header>
     );
 }
+
+export default Header

@@ -2,10 +2,12 @@ import { NextResponse } from 'next/server';
 import { GoogleGenAI } from "@google/genai";
 import Conversation from '@/src/model/conversations';
 import { connectToDb } from "@/src/lib/mongodb"
+import { authOptions } from '@/src/app/api/auth/[...nextauth]/route';
+import { getServerSession } from "next-auth";
 
 const personalContext = `
 [ROLE]
-Hey there! 👋 I’m the personal AI assistant of **Syed Nasar** — a passionate Full Stack Developern and freelancer. If you’re here to know more about his skills, projects, or how to work with him — you're in the right place!
+Hey there! 👋 I'm the personal AI assistant of **Syed Nasar** — a passionate Full Stack Developern and freelancer. If you’re here to know more about his skills, projects, or how to work with him — you're in the right place!
 
 [ABOUT SYED]
 Nasar has around 3 years of experience in web development, with a strong focus on frontend engineering. He’s known for building fast, user-friendly websites and solving real business problems through clean, scalable code. He’s worked with startups, business owners, and agencies — and always brings a thoughtful approach to his work.
@@ -91,8 +93,14 @@ Thanks for stopping by — ask me anything about Syed!
 export async function POST(req) {
 
   const user_id = "68610098aeb12c90126cb528"
+
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
   connectToDb()
-  const { message, conversationId } = await req.json();
+  const { message } = await req.json();
   const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
   try {
 
@@ -100,14 +108,13 @@ export async function POST(req) {
       { userId: user_id },
       {},
       {
-        upsert: true, // Create if doesn't exist
-        new: true, // Return updated doc
-        setDefaultsOnInsert: true, // Apply defaults when creating
-        runValidators: true // Run schema validators
+        upsert: true,
+        new: true,
+        setDefaultsOnInsert: true,
+        runValidators: true
       }
     );
 
-    // If new conversation was created, set initial properties
     if (!conversation.title) {
       conversation.title = "Syed Nasar's AI Assistant";
       conversation.messages = [];
@@ -139,32 +146,25 @@ export async function POST(req) {
     });
 
 
-    let aiResponseGrouped;
     let aiResponse;
 
     try {
       await chat.sendMessage({ message: message });
       const history = await chat.getHistory();
-      
-      // Get only new messages since initial context
       const newMessages = history.slice(geminiContext.length);
 
-      // Format and save new messages
       const formattedNewMessages = newMessages.map(msg => ({
         role: msg.role,
         content: msg.parts[0]?.text,
         timestamp: new Date(),
       }));
       conversation.messages.push(...formattedNewMessages);
+
       await conversation.save();
-
-
-      // Extract just the AI response (last message)
       aiResponse = formattedNewMessages.find(m => m.role === "model");
     } catch (error) {
-      console.error("Gemini_chat_error:", error);
+      console.error("gemini_sendMessage_error:", error);
     }
-
 
     return NextResponse.json({
       conversationId: conversation._id,

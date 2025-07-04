@@ -92,6 +92,148 @@ h6 {
   }
 }
 
+.authInfo__wrapper {
+  width: 50vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.authInfo__notFound {}
+
+.authInfo__text {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.authInfo__btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: .75rem 1rem;
+  border-radius: .5rem;
+  font-size: .8rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  background: #222;
+  color: #ffffff;
+  overflow: hidden;
+  box-shadow: 0 0 0 0 transparent;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 86%;
+    position: absolute;
+    top: 7%;
+    left: 0%;
+    opacity: 0;
+    background: #fff;
+    box-shadow: 0 0 50px 30px #fff;
+    -webkit-transform: skewX(-20deg);
+    -moz-transform: skewX(-20deg);
+    -ms-transform: skewX(-20deg);
+    -o-transform: skewX(-20deg);
+    transform: skewX(-20deg);
+  }
+
+  &:hover {
+    background: #bababa;
+    color: #222222;
+    box-shadow: 0 0 30px 5px #dedede;
+    -webkit-transition: all 0.2s ease-out;
+    -moz-transition: all 0.2s ease-out;
+    transition: all 0.2s ease-out;
+
+    &::before {
+      -webkit-animation: sh02 0.5s 0s linear;
+      -moz-animation: sh02 0.5s 0s linear;
+      animation: sh02 0.5s 0s linear;
+    }
+  }
+
+  &:active {
+    box-shadow: 0 0 0 0 transparent;
+    -webkit-transition: box-shadow 0.2s ease-in;
+    -moz-transition: box-shadow 0.2s ease-in;
+    transition: box-shadow 0.2s ease-in;
+  }
+
+}
+
+
+@keyframes sh02 {
+  from {
+    opacity: 0;
+    left: 0%;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    left: 100%;
+  }
+}
+
+
+.authInfo__loader {
+  width: 80px;
+  height: 60px;
+  --c: no-repeat linear-gradient(#000 0 0);
+  background:
+    var(--c) 0 100%/16px 60px,
+    var(--c) 50% 100%/16px 40px,
+    var(--c) 100% 100%/16px 30px;
+  position: relative;
+  clip-path: inset(-100% 0);
+}
+
+.authInfo__loader:before {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #000;
+  left: -32px;
+  top: 0;
+  animation:
+    l5-1 2s linear infinite,
+    l5-2 0.5s cubic-bezier(0, 200, .8, 200) infinite;
+}
+
+@keyframes l5-1 {
+  0% {
+    left: -16px;
+    transform: translateY(-8px)
+  }
+
+  100% {
+    left: calc(100% + 8px);
+    transform: translateY(22px)
+  }
+}
+
+@keyframes l5-2 {
+  100% {
+    top: -0.1px
+  }
+}
+
 
 
 @media (prefers-color-scheme: dark) {

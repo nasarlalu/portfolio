@@ -2,6 +2,9 @@
 import { useState, useRef, useEffect } from 'react';
 import Suggestions from './Suggestions';
 import ChatMessage from './ChatMessage';
+import { useSession } from "next-auth/react"
+import Loading from '@/src/components/authInfo/Loading';
+import NotFound from '@/src/components/authInfo/NotFound';
 
 const MAX_INPUT_CHARS = 300;
 
@@ -15,6 +18,8 @@ export default function Chatbox() {
     id: null,
     messages: []
   });
+
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -49,7 +54,7 @@ export default function Chatbox() {
       const data = await response.json();
       console.log("Chat__response:", data?.message?.content);
       setMessages(prev => [...prev, { role: 'model', content: data?.message?.content }]);
-      
+
     } catch (error) {
       setMessages(prev => [
         ...prev,
@@ -62,25 +67,33 @@ export default function Chatbox() {
     }
   };
 
+  console.log(session, "session.user.id")
+
+
 
   const loadHistory = async () => {
     const res = await fetch(`/api/conversations/68610098aeb12c90126cb528`);
-    const data = await res.json();
-    console.log("Conversation loaded:", data);
-    if (data) {
-      setPrevConversation({
-        id: data._id,
-        messages: data.messages
-      })
-      setMessages(data?.messages)
-    } else {
-      console.log("No previous conversation found");
-    }
-
+    const response = await res.json();
+    console.log("Conversation loaded:", response);
+    setPrevConversation({
+      id: response.data?._id,
+      messages: response.data?.messages
+    })
+    setMessages(response?.data?.messages)
   };
   useEffect(() => {
-    loadHistory();
+    if (session) {
+      loadHistory();
+    }
   }, []);
+
+  if (status === "loading") {
+    return <Loading />;
+  }
+
+  if (!session) {
+    return <NotFound />;
+  }
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-6 bg-gray-50 shadow-md rounded-xl border border-gray-200">

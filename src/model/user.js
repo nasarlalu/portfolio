@@ -5,16 +5,12 @@ const userSchema = new mongoose.Schema(
     {
         conversations: [
             {
-                type:  mongoose.Schema.Types.ObjectId,
+                type: mongoose.Schema.Types.ObjectId,
                 ref: 'Conversation'
             }
         ],
-        userName: {
+        name: {
             type: String,
-            required: [true, "Username is required"],
-            unique: true,
-            minlength: [3, "Username must be at least 3 characters"],
-            maxlength: [20, "Username must be at most 20 characters"],
             trim: true,
         },
         email: {
@@ -25,10 +21,11 @@ const userSchema = new mongoose.Schema(
             lowercase: true,
             trim: true,
         },
-        password: {
+        image: {
             type: String,
-            required: [true, "Password is required"],
-            minlength: [6, "Password must be at least 6 characters"],
+        },
+        emailVerified: {
+            type: Date,
         },
         lastActive: {
             type: Date,
