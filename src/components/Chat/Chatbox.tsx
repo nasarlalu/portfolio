@@ -67,12 +67,9 @@ export default function Chatbox() {
     }
   };
 
-  console.log(session, "session.user.id")
-
-
 
   const loadHistory = async () => {
-    const res = await fetch(`/api/conversations/68610098aeb12c90126cb528`);
+    const res = await fetch(`/api/conversations/${session?.user?.id}`);
     const response = await res.json();
     console.log("Conversation loaded:", response);
     setPrevConversation({
@@ -85,7 +82,7 @@ export default function Chatbox() {
     if (session) {
       loadHistory();
     }
-  }, []);
+  }, [session?.user?.id]);
 
   if (status === "loading") {
     return <Loading />;
@@ -96,24 +93,27 @@ export default function Chatbox() {
   }
 
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 bg-gray-50 shadow-md rounded-xl border border-gray-200">
-      <div className="text-center mb-6">
-        <h2 className="text-2xl font-bold text-gray-800">My Professional Assistant</h2>
-      </div>
+    <div>
+      <div className="max-w-3xl mx-auto px-4 py-6 bg-gray-50 shadow-md rounded-xl border border-gray-200">
+        <div className="text-center mb-6">
+          <h2 className="text-2xl font-bold text-gray-800">My Professional Assistant</h2>
+        </div>
 
-      <div className="max-h-[500px] overflow-y-scroll overflow-x-hidden bg-white p-4 rounded-md space-y-4 border border-gray-200">
-        {messages.length === 0 ? (
-          <div className="text-center py-0 text-gray-600">
-            <div className="mb-3">
-              <span className="text-4xl">💬</span>
+        <div className="max-h-[250px] overflow-y-scroll overflow-x-hidden bg-white p-4 rounded-md space-y-4 border border-gray-200">
+          {messages.length === 0 ? (
+            <div className="text-center py-0 text-gray-600">
+              <div className="mb-3">
+                <span className="text-4xl">💬</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2">Ask me anything about my work</h3>
+              <p className="max-w-xs mx-auto">Try asking about my projects, skills, or experience.</p>
             </div>
-            <h3 className="text-lg font-semibold mb-2">Ask me anything about my work</h3>
-            <p className="max-w-xs mx-auto">Try asking about my projects, skills, or experience.</p>
-          </div>
-        ) : (
-          messages?.map((msg, i) => <ChatMessage key={i} role={msg?.role} content={msg?.content} />)
-        )}
-        <div ref={messagesEndRef} />
+          ) : (
+            messages?.map((msg, i) => <ChatMessage key={i} role={msg?.role} content={msg?.content} />)
+          )}
+          <div ref={messagesEndRef} />
+        </div>
+
       </div>
 
       <Suggestions onSelect={(s) => setInput(s)} disabled={isLoading} />
@@ -125,13 +125,13 @@ export default function Chatbox() {
             onChange={(e) => setInput(e.target.value.slice(0, MAX_INPUT_CHARS))}
             disabled={isLoading}
             placeholder="Ask about my professional background..."
-            className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent disabled:bg-gray-100"
+            className="bg-zinc-700 text-white flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-zinc-200 focus:border-transparent disabled:bg-gray-100"
             aria-label="Ask about my professional background"
           />
           <button
             type="submit"
             disabled={isLoading || !input.trim()}
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-4 py-3 text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
+            className="bg-zinc-800 hover:bg-gray-700 text-white rounded-lg px-4 py-3 text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isLoading ? 'Sending...' : 'Send'}
           </button>
@@ -143,5 +143,6 @@ export default function Chatbox() {
         </div>
       </form>
     </div>
+
   );
 }

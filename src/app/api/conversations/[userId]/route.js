@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDb } from '@/src/lib/mongodb';
 import Conversation from '@/src/model/conversations';
-import { authOptions } from '@/src/app/api/auth/[...nextauth]/route';
+import { authOptions } from '@/src/lib/authOption';
 import { getServerSession } from "next-auth";
 
 export const GET = async () => {

@@ -68,7 +68,7 @@ export default function Home() {
 
             <div className={styles.heroGridItem}>
               <div className={styles.heroBannerWrapper}>
-                <Image src={banner} alt='banner' quality={100} className={styles.heroBanner} />
+                <Image src={banner} alt='banner' quality={100} className={styles.heroBanner} priority />
               </div>
             </div>
 
