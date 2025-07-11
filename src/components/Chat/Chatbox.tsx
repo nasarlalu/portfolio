@@ -5,7 +5,8 @@ import ChatMessage from './ChatMessage';
 import { useSession } from "next-auth/react"
 import Loading from '@/src/components/authInfo/Loading';
 import NotFound from '@/src/components/authInfo/NotFound';
-
+import { BsArrowUpCircleFill } from "react-icons/bs";
+import { ChatLoaderIcon } from "@/public/icon-pack";
 const MAX_INPUT_CHARS = 300;
 
 export default function Chatbox() {
@@ -93,13 +94,10 @@ export default function Chatbox() {
   }
 
   return (
-    <div>
-      <div className="max-w-3xl mx-auto px-4 py-6 bg-gray-50 shadow-md rounded-xl border border-gray-200">
-        <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800">My Professional Assistant</h2>
-        </div>
+    <div className='mt-5'>
 
-        <div className="max-h-[250px] overflow-y-scroll overflow-x-hidden bg-white p-4 rounded-md space-y-4 border border-gray-200">
+      <div className="rounded-2xl p-5 bg-white shadow-md">
+        <div className="chat__scrollContainer max-h-[76dvh] overflow-y-scroll overflow-x-hidden rounded-xl">
           {messages.length === 0 ? (
             <div className="text-center py-0 text-gray-600">
               <div className="mb-3">
@@ -113,28 +111,31 @@ export default function Chatbox() {
           )}
           <div ref={messagesEndRef} />
         </div>
-
       </div>
 
-      <Suggestions onSelect={(s) => setInput(s)} disabled={isLoading} />
+      {messages.length === 0 && <Suggestions onSelect={(s) => setInput(s)} disabled={isLoading} />}
 
       <form onSubmit={handleSubmit} className="mt-4">
         <div className="flex gap-2">
-          <input
-            value={input}
-            onChange={(e) => setInput(e.target.value.slice(0, MAX_INPUT_CHARS))}
-            disabled={isLoading}
-            placeholder="Ask about my professional background..."
-            className="bg-zinc-700 text-white flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-zinc-200 focus:border-transparent disabled:bg-gray-100"
-            aria-label="Ask about my professional background"
-          />
-          <button
-            type="submit"
-            disabled={isLoading || !input.trim()}
-            className="bg-zinc-800 hover:bg-gray-700 text-white rounded-lg px-4 py-3 text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading ? 'Sending...' : 'Send'}
-          </button>
+          <div className='w-full text-white flex gap-1 border border-zinc-400 rounded-2xl'>
+            <input
+              value={input}
+              onChange={(e) => setInput(e.target.value.slice(0, MAX_INPUT_CHARS))}
+              disabled={isLoading}
+              placeholder="Ask about my professional background..."
+              className="
+              w-full text-base ps-4 py-3 bg-transparent text-gray-800 
+              focus:outline-none"
+              aria-label="Ask about my professional background"
+            />
+            <button
+              type="submit"
+              disabled={isLoading || !input.trim()}
+              className="p-3 py-2 text-white text-sm transition disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? <ChatLoaderIcon className='w-10' /> : <BsArrowUpCircleFill color='#222' className='w-full h-full' />}
+            </button>
+          </div>
         </div>
 
         <div className="flex justify-between mt-2 text-xs text-gray-500">

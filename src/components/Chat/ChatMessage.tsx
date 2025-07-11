@@ -25,8 +25,8 @@ export default function ChatMessage({
 
     return (
         <div className={`flex items-start gap-3 mb-4 ${isUser ? 'flex-row-reverse' : 'overflow-x-hidden'}`}>
-            {avatar}
-            <div className={`text-left max-w-[80%] px-4 py-3 rounded-2xl text-sm whitespace-pre-wrap break-words ${isUser ? 'bg-zinc-400 text-white' : 'bg-zinc-100 text-white'}`} >
+            {/* {avatar} */}
+            <div className={`text-left max-w-[80%] px-4 py-3 rounded-2xl text-sm whitespace-pre-wrap break-words ${isUser ? 'bg-neutral-300 text-black' : 'bg-zinc-100 text-white'}`} >
                 <div className='markupText__wrapper'>
                     <ReactMarkdown>{content}</ReactMarkdown>
                 </div>

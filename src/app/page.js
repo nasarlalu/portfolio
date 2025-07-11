@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import styles from "./page.module.scss";
 import banner from '@/public/assets/images/me_transparent.png'
+import Header from "@/src/components/Header/Header"
+import Footer from "@/src/components/Footer/Footer"
 import { AiOutlineDownload } from "react-icons/ai";
 import { PiMonitorThin } from "react-icons/pi";
 import AnimatedText from "@/src/components/Animations/AnimatedText";
@@ -11,6 +13,7 @@ import { useAnimateOnView } from '@/src/hooks/useAnimateOnView'
 import { ShopifyIcon, FigmaIcon } from "@/public/icon-pack"
 import RealPageWrapper from "@/src/components/Loader/PageWrapper"
 import Project from '@/src/components/Projects/Project'
+import React from "react";
 
 export default function Home() {
 
@@ -54,146 +57,150 @@ export default function Home() {
 
   return (
     // <RealPageWrapper showMetrics={false}>
-    <main className="main__homePage">
+    <React.Fragment>
+      <Header />
+      <main className="main__homePage">
 
-      <section className={styles.heroSection}>
-        <div className="container">
-          <div className={styles.heroGrid}>
+        <section className={styles.heroSection}>
+          <div className="container">
+            <div className={styles.heroGrid}>
 
-            <div className={styles.heroGridItem__mob}>
-              <h1 className={styles.heroTite}><AnimatedText text={"Syed"} /></h1>
-              <h1 className={styles.heroTite}><AnimatedText text={"Nasar"} /></h1>
-              <h6 className={styles.heroRole}> <AnimatedText text={"Full Stack Enginner"} /></h6>
-            </div>
-
-            <div className={styles.heroGridItem}>
-              <div className={styles.heroBannerWrapper}>
-                <Image src={banner} alt='banner' quality={100} className={styles.heroBanner} priority />
-              </div>
-            </div>
-
-            <div className={styles.heroGridItem}>
-              <div className={styles.heroContent}>
-                <h1 className={styles.heroTite}><AnimatedText text={"Syed"} /> </h1>
+              <div className={styles.heroGridItem__mob}>
+                <h1 className={styles.heroTite}><AnimatedText text={"Syed"} /></h1>
                 <h1 className={styles.heroTite}><AnimatedText text={"Nasar"} /></h1>
-
                 <h6 className={styles.heroRole}> <AnimatedText text={"Full Stack Enginner"} /></h6>
-                <p className={styles.heroDesp}><AnimatedText gap="4px" text={"Hi, I’m a creative Full Stack Engineer who loves building sleek and user-friendly web experiences"} /></p>
+              </div>
 
-                <motion.div
-                  variants={downloadBtnVariant}
-                  initial="hidden"
-                  animate="visible"
-                >
-                  <a target="_blank" href='/assets/syed_nasar_resume.pdf' className={styles.heroBtn}>
-                    <span className={styles.heroText}>Download CV</span>
-                    <AiOutlineDownload className={styles.heroIcon} />
-                  </a>
-                </motion.div>
+              <div className={styles.heroGridItem}>
+                <div className={styles.heroBannerWrapper}>
+                  <Image src={banner} alt='banner' quality={100} className={styles.heroBanner} priority />
+                </div>
+              </div>
+
+              <div className={styles.heroGridItem}>
+                <div className={styles.heroContent}>
+                  <h1 className={styles.heroTite}><AnimatedText text={"Syed"} /> </h1>
+                  <h1 className={styles.heroTite}><AnimatedText text={"Nasar"} /></h1>
+
+                  <h6 className={styles.heroRole}> <AnimatedText text={"Full Stack Enginner"} /></h6>
+                  <p className={styles.heroDesp}><AnimatedText gap="4px" text={"Hi, I’m a creative Full Stack Engineer who loves building sleek and user-friendly web experiences"} /></p>
+
+                  <motion.div
+                    variants={downloadBtnVariant}
+                    initial="hidden"
+                    animate="visible"
+                  >
+                    <a target="_blank" href='/assets/syed_nasar_resume.pdf' className={styles.heroBtn}>
+                      <span className={styles.heroText}>Download CV</span>
+                      <AiOutlineDownload className={styles.heroIcon} />
+                    </a>
+                  </motion.div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
 
-      <section className={styles.serviceSection}>
-        <div className='container'>
-          <div className={styles.TitleGrid}>
-            <div className={styles.TitleGridtem}>
-              <p className={styles.TitleText__uppercase}><AnimatedText text={"What I’m good at"} /></p>
-              <h1> <AnimatedText text={"Solutions"} /> </h1>
-            </div>
-            <div className={styles.TitleGridtem}>
-              <p className={styles.TitleText}>
-                <AnimatedText gap="4px" text={"I offer a suite of services designed to bring your ideas to life. Let’s transform your vision into a digital masterpiece together. Explore my services and let’s start building your dream digital presence today!"} />
-              </p>
-            </div>
-          </div>
-
-          <motion.div
-            ref={serviceSection?.ref}
-            className={styles.serviceGrid}
-            initial={"hidden"}
-            animate={serviceSection?.hasAnimated ? "visible" : "hidden"}
-            variants={serviceContainerVariants}
-          >
-            {serviceItems.map((item, index) => (
-              <motion.div
-                key={index}
-                className={styles.serviceGridItem}
-                variants={serviceItemVariants}
-                style={{ willChange: 'opacity, transform' }}
-                whileHover={{ scale: 1.03 }}
-              >
-                {item?.title == "Shopify Store" && <ShopifyIcon className={styles.serviceGridIcon} />}
-                {item?.title == "Custom Web Apps" && <PiMonitorThin className={styles.serviceGridIcon} />}
-                {item?.title == "Web Design" && <FigmaIcon className={styles.serviceGridIcon} />}
-
-                <h2 className={styles.serviceGridHeading}>{item.title}</h2>
-                <p className={styles.serviceGridtext}>{item.description}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-
-        </div>
-      </section>
-
-
-
-      <section className={styles.skillSection}>
-        <div className="container">
-
-          <div className={styles.skill__wrapper}>
-            <div className={styles.skill__wrapItem}>
-              <h2 className={styles.skill__wraptextTitle}><AnimatedText text="Bringing Ideas to Life with Code & Creativity" /></h2>
-              <p className={styles.skill__wraptext}>
-                <AnimatedText gap="4px" text={"I specialize in building dynamic, responsive, and visually engaging digital experiences with a focus on performance and usability."} />
-              </p>
-              <p className={styles.skill__wraptext}>
-                <AnimatedText gap="4px" text={"From frontend elegance to backend efficiency, I leverage modern technologies to develop seamless, high-quality web applications."} />
-              </p>
+        <section className={styles.serviceSection}>
+          <div className='container'>
+            <div className={styles.TitleGrid}>
+              <div className={styles.TitleGridtem}>
+                <p className={styles.TitleText__uppercase}><AnimatedText text={"What I’m good at"} /></p>
+                <h1> <AnimatedText text={"Solutions"} /> </h1>
+              </div>
+              <div className={styles.TitleGridtem}>
+                <p className={styles.TitleText}>
+                  <AnimatedText gap="4px" text={"I offer a suite of services designed to bring your ideas to life. Let’s transform your vision into a digital masterpiece together. Explore my services and let’s start building your dream digital presence today!"} />
+                </p>
+              </div>
             </div>
 
-            <div className={styles.skill__wrapItem}>
-              <motion.div
-                ref={skillSection?.ref}
-                className={styles.skill__grid}
-                variants={skillContainerVariants}
-                initial="hidden"
-                animate={skillSection?.hasAnimated ? "visible" : "hidden"}
+            <motion.div
+              ref={serviceSection?.ref}
+              className={styles.serviceGrid}
+              initial={"hidden"}
+              animate={serviceSection?.hasAnimated ? "visible" : "hidden"}
+              variants={serviceContainerVariants}
+            >
+              {serviceItems.map((item, index) => (
+                <motion.div
+                  key={index}
+                  className={styles.serviceGridItem}
+                  variants={serviceItemVariants}
+                  style={{ willChange: 'opacity, transform' }}
+                  whileHover={{ scale: 1.03 }}
+                >
+                  {item?.title == "Shopify Store" && <ShopifyIcon className={styles.serviceGridIcon} />}
+                  {item?.title == "Custom Web Apps" && <PiMonitorThin className={styles.serviceGridIcon} />}
+                  {item?.title == "Web Design" && <FigmaIcon className={styles.serviceGridIcon} />}
 
-              >
-                {skillArray?.map((item, index) => (
-                  <motion.div
-                    key={index}
-                    className={styles.skill__gridItem}
-                    variants={skillItemVariants}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <span className={styles.skill__gridIcon}>{item?.skill__gridIcon}</span>
-                    <h2 className={styles.skill__gridSkill}>{item?.skill__gridSkill}</h2>
-                  </motion.div>
-                ))}
-
-                <motion.div className={styles.skill__gridItemCentred} variants={skillCenteredGridAnime}>
-                  <h6 className={styles.skill__gridItemCentredTitle}>SKILLS</h6>
+                  <h2 className={styles.serviceGridHeading}>{item.title}</h2>
+                  <p className={styles.serviceGridtext}>{item.description}</p>
                 </motion.div>
-              </motion.div>
+              ))}
+            </motion.div>
 
-            </div>
           </div>
+        </section>
 
 
 
-        </div>
-      </section>
+        <section className={styles.skillSection}>
+          <div className="container">
 
-      <Project />
+            <div className={styles.skill__wrapper}>
+              <div className={styles.skill__wrapItem}>
+                <h2 className={styles.skill__wraptextTitle}><AnimatedText text="Bringing Ideas to Life with Code & Creativity" /></h2>
+                <p className={styles.skill__wraptext}>
+                  <AnimatedText gap="4px" text={"I specialize in building dynamic, responsive, and visually engaging digital experiences with a focus on performance and usability."} />
+                </p>
+                <p className={styles.skill__wraptext}>
+                  <AnimatedText gap="4px" text={"From frontend elegance to backend efficiency, I leverage modern technologies to develop seamless, high-quality web applications."} />
+                </p>
+              </div>
+
+              <div className={styles.skill__wrapItem}>
+                <motion.div
+                  ref={skillSection?.ref}
+                  className={styles.skill__grid}
+                  variants={skillContainerVariants}
+                  initial="hidden"
+                  animate={skillSection?.hasAnimated ? "visible" : "hidden"}
+
+                >
+                  {skillArray?.map((item, index) => (
+                    <motion.div
+                      key={index}
+                      className={styles.skill__gridItem}
+                      variants={skillItemVariants}
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <span className={styles.skill__gridIcon}>{item?.skill__gridIcon}</span>
+                      <h2 className={styles.skill__gridSkill}>{item?.skill__gridSkill}</h2>
+                    </motion.div>
+                  ))}
+
+                  <motion.div className={styles.skill__gridItemCentred} variants={skillCenteredGridAnime}>
+                    <h6 className={styles.skill__gridItemCentredTitle}>SKILLS</h6>
+                  </motion.div>
+                </motion.div>
+
+              </div>
+            </div>
 
 
 
-    </main>
+          </div>
+        </section>
+
+        <Project />
+
+
+
+      </main>
+      <Footer />
+    </React.Fragment>
     // </RealPageWrapper>
   );
 }

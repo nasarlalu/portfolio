@@ -1,7 +1,5 @@
 import { Syne } from "next/font/google";
 import "./globals.css";
-import Header from "@/src/components/Header/Header"
-import Footer from "@/src/components/Footer/Footer"
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -64,9 +62,7 @@ export default function RootLayout({ children }) {
       <body className={syne.className} suppressHydrationWarning={true}>
         {/* <LenisScrolling> */}
         <LayoutWrapper>
-          <Header />
           {children}
-          <Footer />
         </LayoutWrapper>
         {/* </LenisScrolling> */}
       </body>
