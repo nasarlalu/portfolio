@@ -18,7 +18,7 @@ export default function RealPageWrapper({ children, showMetrics = false }) {
         style={{
           opacity: isLoading ? 0 : 1,
           transition: "opacity 0.5s ease",
-          minHeight: "100vh",
+          minHeight: "100dvh",
         }}
       >
         {children}

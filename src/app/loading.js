@@ -1,7 +1,7 @@
-import React from 'react'
+import Loading from "@/src/components/authInfo/Loading"
 
 export default function loading() {
   return (
-    <div>loading....</div>
+    <Loading />
   )
 }
