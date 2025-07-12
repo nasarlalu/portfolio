@@ -114,6 +114,7 @@ h6 {
 .authInfo__text {
   font-size: 2.5rem;
   font-weight: 700;
+  text-align: center;
 }
 
 .authInfo__btn {
@@ -283,6 +284,7 @@ h6 {
   height: 100dvh;
   overflow: hidden;
   background-color: #eee;
+  position: relative;
 
   &::-webkit-scrollbar {
     display: none;
@@ -294,6 +296,24 @@ h6 {
   scrollbar-width: none;
 }
 
+.chatModal__wrapper {
+  position: fixed;
+  top: 10vh;
+  right: 1rem;
+  width: fit-content;
+  height: fit-content;
+  border-radius: .5rem;
+  z-index: 1;
+
+  .chatModal__list {
+    padding: .5rem;
+  }
+
+  .chatModal__listItem {
+    display: flex;
+    align-items: center;
+  }
+}
 
 
 

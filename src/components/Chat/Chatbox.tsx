@@ -10,6 +10,9 @@ import { ChatLoaderIcon } from "@/public/icon-pack";
 const MAX_INPUT_CHARS = 300;
 
 export default function Chatbox() {
+
+  const { data: session, status } = useSession();
+
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState<{ role: string; content: string }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,14 +23,8 @@ export default function Chatbox() {
     messages: []
   });
 
-  const { data: session, status } = useSession();
-
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-
     e.preventDefault();
     if (!input.trim() || isLoading) return;
 
@@ -68,7 +65,6 @@ export default function Chatbox() {
     }
   };
 
-
   const loadHistory = async () => {
     const res = await fetch(`/api/conversations/${session?.user?.id}`);
     const response = await res.json();
@@ -77,13 +73,18 @@ export default function Chatbox() {
       id: response.data?._id,
       messages: response.data?.messages
     })
-    setMessages(response?.data?.messages)
+    setMessages(response.data?.messages || []);
   };
+
   useEffect(() => {
     if (session) {
       loadHistory();
     }
   }, [session?.user?.id]);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   if (status === "loading") {
     return <Loading />;
@@ -94,25 +95,22 @@ export default function Chatbox() {
   }
 
   return (
-    <div className='mt-5'>
-
-      <div className="rounded-2xl p-5 bg-white shadow-md">
-        <div className="chat__scrollContainer max-h-[76dvh] overflow-y-scroll overflow-x-hidden rounded-xl">
-          {messages.length === 0 ? (
-            <div className="text-center py-0 text-gray-600">
-              <div className="mb-3">
-                <span className="text-4xl">💬</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Ask me anything about my work</h3>
-              <p className="max-w-xs mx-auto">Try asking about my projects, skills, or experience.</p>
+    <div className='mt-8'>
+      <div className="chat__scrollContainer max-h-[76dvh] overflow-y-scroll overflow-x-hidden rounded-xl">
+        {messages && messages.length === 0 ? (
+          <div className="text-center py-0 text-gray-600">
+            <div className="mb-3">
+              <span className="text-4xl">💬</span>
             </div>
-          ) : (
-            messages?.map((msg, i) => <ChatMessage key={i} role={msg?.role} content={msg?.content} />)
-          )}
-          <div ref={messagesEndRef} />
-        </div>
+            <h3 className="text-lg font-semibold mb-2">Ask me anything about my work</h3>
+            <p className="max-w-xs mx-auto">Try asking about my projects, skills, or experience.</p>
+          </div>
+        ) : (
+          messages?.map((msg, i) => <ChatMessage key={i} role={msg?.role} content={msg?.content} />)
+        )}
+        <div ref={messagesEndRef} />
       </div>
-
+      
       {messages.length === 0 && <Suggestions onSelect={(s) => setInput(s)} disabled={isLoading} />}
 
       <form onSubmit={handleSubmit} className="mt-4">

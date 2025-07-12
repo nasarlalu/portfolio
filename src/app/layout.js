@@ -5,6 +5,9 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
 import LayoutWrapper from "./layoutWrapper";
+import ChatModal from "@/src/components/ChatModal/ChatModal";
+import { ChatModalProvider } from "@/src/context/ChatModalContext";
+
 const syne = Syne({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], fallback: ["sans-serif"] });
 
 export const metadata = {
@@ -62,7 +65,10 @@ export default function RootLayout({ children }) {
       <body className={syne.className} suppressHydrationWarning={true}>
         {/* <LenisScrolling> */}
         <LayoutWrapper>
-          {children}
+          <ChatModalProvider>
+            <ChatModal />
+            {children}
+          </ChatModalProvider>
         </LayoutWrapper>
         {/* </LenisScrolling> */}
       </body>

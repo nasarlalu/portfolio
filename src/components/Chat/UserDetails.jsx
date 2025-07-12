@@ -1,44 +1,39 @@
 "use client"
+import React from 'react'
 import { useSession } from "next-auth/react";
 import Image from 'next/image';
+import { useChatModal } from "@/src/context/ChatModalContext"
+import { VscAccount } from "react-icons/vsc";
+import { ChatLoaderIcon } from "@/public/icon-pack";
 
 export default function UserDetails() {
     const { data: session, status } = useSession();
+    const { toggleModal } = useChatModal()
 
     if (status === "loading") {
-        return <p>Loading user details...</p>;
+        return <div className="absolute top-3 right-3 p-1 w-12 h-12 border rounded-full shadow-sm text-white cursor-pointer">
+            <ChatLoaderIcon className='w-full rounded-full' />;
+        </div>
     }
 
-    if (!session?.user) {
-        return <p>No user is currently logged in.</p>;
-    }
+    const image = session?.user?.image;
 
-    const { name, email, image } = session.user;
 
     return (
-        <div className="p-4 border rounded shadow-sm max-w-sm bg-zinc-400 text-white h-fit">
-            <h6 className="font-semibold text-lg mb-2">User Details</h6>
-            <div className="space-y-2">
-                {image && (
-                    <Image
-                        width={100}
-                        height={100}
-                        src={image}
-                        alt="User Profile"
-                        className="w-16 h-16 rounded-full object-cover"
-                    />
-                )}
-                <p><strong>Name:</strong> {name || "N/A"}</p>
-                <p><strong>Email:</strong> {email || "N/A"}</p>
-                {session ?
-                    <div>
-                        <button onClick={() => signOut({ callbackUrl: "/chat" })}>Sign out</button>
-                    </div> :
-                    <div>
-                        <button onClick={() => signIn("google", { callbackUrl: `${window.location.origin}/chat` })}> Sign In </button>
-                    </div>
-                }
-            </div>
+        <div
+            onClick={() => toggleModal()}
+            className="absolute top-3 right-3 p-1 w-12 h-12 border rounded-full shadow-sm text-white cursor-pointer">
+            {image ?
+                <Image
+                    width={50}
+                    height={50}
+                    quality={100}
+                    src={image}
+                    alt="User Profile"
+                    className="w-full rounded-full object-cover"
+                /> :
+                <VscAccount className="w-full h-full text-gray-400 p-1" fontWeight={300} />
+            }
         </div>
     );
 }

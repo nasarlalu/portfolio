@@ -3,8 +3,8 @@ import UserDetails from "@/src/components/Chat/UserDetails"
 export default function chat() {
     return (
         <section className="chat__section">
+            <UserDetails />
             <div className="container--chat">
-                {/* <UserDetails /> */}
                 <Chatbox />
             </div>
         </section>

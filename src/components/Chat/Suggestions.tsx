@@ -24,7 +24,7 @@ export default function Suggestions({
     if (!visible) return null;
 
     return (
-        <div className="border-y border-indigo-100 p-4 rounded-b-lg">
+        <div className="p-4 rounded-b-lg">
             <h4 className="text-sm font-semibold text-zinc-950 mb-4 tracking-wide">
                 Try asking:
             </h4>
@@ -38,7 +38,7 @@ export default function Suggestions({
                             type="button"
                             onClick={() => onSelect(suggestion)}
                             disabled={disabled}
-                            className="w-full h-full px-4 py-5 text-sm text-zinc-950 font-medium text-left group-hover:bg-zinc-600 text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full h-full px-4 py-5 text-sm text-zinc-950 font-medium text-left group-hover:bg-gray-100 text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {suggestion}
                         </button>
