@@ -92,12 +92,12 @@ Thanks for stopping by — ask me anything about Syed!
 
 export async function POST(req) {
 
-  const user_id = "68610098aeb12c90126cb528"
-
   const session = await getServerSession(authOptions);
   if (!session) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
+
+  const user_id = session?.user?.id
 
   connectToDb()
   const { message } = await req.json();

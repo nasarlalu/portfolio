@@ -22,7 +22,7 @@ export default function UserDetails() {
     return (
         <div
             onClick={() => toggleModal()}
-            className="absolute top-3 right-3 p-1 w-12 h-12 border rounded-full shadow-sm text-white cursor-pointer">
+            className="relative ml-auto md:absolute top-3 right-3 p-1 w-12 h-12 border rounded-full shadow-sm text-white cursor-pointer">
             {image ?
                 <Image
                     width={50}

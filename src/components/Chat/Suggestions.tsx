@@ -24,27 +24,29 @@ export default function Suggestions({
     if (!visible) return null;
 
     return (
-        <div className="p-4 rounded-b-lg">
+        <div className="py-2 md:p-4 rounded-b-lg">
             <h4 className="text-sm font-semibold text-zinc-950 mb-4 tracking-wide">
                 Try asking:
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6 mb-6 items-start">
+            <div className="flex flex-nowrap overflow-x-auto gap-3 mb-0 md:grid md:grid-cols-2 lg:grid-cols-2 md:gap-6 md:mb-6 items-start">
                 {SUGGESTIONS?.map((suggestion, index) => (
                     <div
                         key={index}
-                        className="relative group overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
+                        className="w-[13rem] md:w-full shrink-0 relative group overflow-hidden rounded-xl bg-white shadow-sm hover:shadow-md transition-shadow duration-300"
                     >
                         <button
                             type="button"
                             onClick={() => onSelect(suggestion)}
                             disabled={disabled}
-                            className="w-full h-full px-4 py-5 text-sm text-zinc-950 font-medium text-left group-hover:bg-gray-100 text-white transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="w-full h-full px-3 py-3 md:py-5 md:px-4 text-sm text-zinc-950 font-medium text-left group-hover:bg-gray-100 transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                         >
                             {suggestion}
                         </button>
                     </div>
                 ))}
             </div>
+
+
         </div>
     );
 }

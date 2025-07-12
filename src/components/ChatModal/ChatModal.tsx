@@ -45,12 +45,12 @@ export default function ChatModal() {
                     )}
                 </li>
 
-                {session &&
+                {/* {session &&
                     <li className="flex items-center gap-3 text-gray-700 p-2 rounded-lg hover:bg-gray-100 transition-colors cursor-pointer">
                         <AiOutlineDelete className="text-xl" />
                         <span className="truncate">Delete account</span>
                     </li>
-                }
+                } */}
             </ul>
         </div>
     )

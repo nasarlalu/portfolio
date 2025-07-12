@@ -50,7 +50,6 @@ export default function Chatbox() {
         })
       })
       const data = await response.json();
-      console.log("Chat__response:", data?.message?.content);
       setMessages(prev => [...prev, { role: 'model', content: data?.message?.content }]);
 
     } catch (error) {
@@ -68,7 +67,6 @@ export default function Chatbox() {
   const loadHistory = async () => {
     const res = await fetch(`/api/conversations/${session?.user?.id}`);
     const response = await res.json();
-    console.log("Conversation loaded:", response);
     setPrevConversation({
       id: response.data?._id,
       messages: response.data?.messages
@@ -100,7 +98,7 @@ export default function Chatbox() {
         {messages && messages.length === 0 ? (
           <div className="text-center py-0 text-gray-600">
             <div className="mb-3">
-              <span className="text-4xl">💬</span>
+              <span className="text-xl md:text-4xl">💬</span>
             </div>
             <h3 className="text-lg font-semibold mb-2">Ask me anything about my work</h3>
             <p className="max-w-xs mx-auto">Try asking about my projects, skills, or experience.</p>
